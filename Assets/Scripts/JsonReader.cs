@@ -44,4 +44,27 @@ public static class JsonReader
 
         return Collections;
     }
+
+    public static JsonCollections GetCollections()
+	{
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/collections");
+
+        JsonCollections collectionsInJson = JsonUtility.FromJson<JsonCollections>(jsonFile.text);
+
+        return collectionsInJson;
+    }
+
+
+    public static JsonItems GetItens(string id)
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/items-" + id);
+
+        JsonItems collectionsInJson = JsonUtility.FromJson<JsonItems>(jsonFile.text);
+
+        return collectionsInJson;
+    }
 }
+
+
+
+
