@@ -1,0 +1,16 @@
+{
+  "collections": [
+    {
+      "id": "area",
+      "title": "Area Collection"
+    },
+    {
+      "id": "imprint",
+      "title": "Imprint Collection"
+    },
+    {
+      "id": "autograph",
+      "title": "Autograph Collection"
+    }
+  ]
+}

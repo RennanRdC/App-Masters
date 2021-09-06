@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "area-01",
+      "title": "Area Item 01"
+    },
+    {
+      "id": "area-02",
+      "title": "Area Item 02"
+    },
+    {
+      "id": "area-03",
+      "title": "Area Item 03"
+    }
+  ]
+}

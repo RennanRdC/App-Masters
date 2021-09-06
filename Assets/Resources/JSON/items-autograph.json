@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "id": "autograph-01",
+      "title": "Autograph Item 01"
+    },
+    {
+      "id": "autograph-02",
+      "title": "Autograph Item 02"
+    },
+    {
+      "id": "autograph-03",
+      "title": "Autograph Item 03"
+    },
+    {
+      "id": "autograph-04",
+      "title": "Autograph Item 04"
+    }
+  ]
+}
