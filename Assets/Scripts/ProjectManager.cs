@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ProjectManager : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class ProjectManager : MonoBehaviour
     public TMP_InputField widthInputField;
     public TMP_InputField depthInputField;
 
+    public TextMeshProUGUI selectedCollectionText;
+    public TextMeshProUGUI selectedItemText;
+
     public Transform panelContainer;
     public GameObject panelPrefab;
     public GameObject buttonPrefab;
+
+    public MeshGenerator meshGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,14 +40,12 @@ public class ProjectManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
-    void InitializePanels()
+
+
+
+	void InitializePanels()
 	{
         SelectPanel(0);
 
@@ -73,6 +78,9 @@ public class ProjectManager : MonoBehaviour
             child.GetComponent<Outline>().enabled = collectionSelected == child.GetSiblingIndex();
         }
 
+        selectedCollectionText.text = Collections.collections[index].title;
+
+
         InitializeItens(index);
 
         CheckNext();
@@ -86,6 +94,8 @@ public class ProjectManager : MonoBehaviour
         {
             child.GetComponent<Outline>().enabled = itemSelected == child.GetSiblingIndex();
         }
+
+        selectedItemText.text = Items.items[index].title;
 
         CheckNext();
     }
@@ -117,6 +127,15 @@ public class ProjectManager : MonoBehaviour
         SelectPanel(currentPanel);
 
         CheckNext();
+
+        if(currentPanel == 3)
+		{
+            GenerateMesh();
+            
+            CalculateCamera();
+
+
+        }
     }
 
     public void BackPanel()
@@ -145,6 +164,10 @@ public class ProjectManager : MonoBehaviour
 
     }
 
+    public void Restart()
+	{
+        SceneManager.LoadScene(0);
+	}
 
 
     public void CheckNext()
@@ -170,6 +193,31 @@ public class ProjectManager : MonoBehaviour
         }
 
         nextButton.interactable = true;
+    }
+
+
+
+
+
+    public void GenerateMesh()
+	{
+        meshGenerator.GenerateMesh(float.Parse(widthInputField.text), float.Parse(depthInputField.text));
+    }
+
+
+    public void CalculateCamera()
+	{
+        float w = float.Parse(widthInputField.text);
+        float d = float.Parse(depthInputField.text);
+
+        float bigger = w > d ? w : d;
+
+        
+
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x - float.Parse(widthInputField.text) / 2, Camera.main.transform.position.y, Camera.main.transform.position.z);
+        Vector3 direction = Camera.main.transform.position - (meshGenerator.transform.position - new Vector3(float.Parse(widthInputField.text) / 2, 0, float.Parse(depthInputField.text) / 2));
+        Camera.main.transform.position = Camera.main.transform.position + direction.normalized * bigger/2 + new Vector3(0,bigger,0);
+
     }
 
 }
