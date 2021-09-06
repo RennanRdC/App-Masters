@@ -26,25 +26,7 @@ public class JsonItems
 
 public static class JsonReader
 {
-    public static List<JsonItems> InitializeJSON()
-	{
-        List<JsonItems> Collections = new List<JsonItems>();
-
-        TextAsset jsonFile = Resources.Load<TextAsset>("JSON/collections");
-
-        JsonCollections collectionsInJson = JsonUtility.FromJson<JsonCollections>(jsonFile.text);
-
-        foreach (JsonElement jsonElement in collectionsInJson.collections)
-        {
-            TextAsset collectionJsonFile = Resources.Load<TextAsset>("JSON/items-" + jsonElement.id);
-
-            JsonItems subcollectionsInJson = JsonUtility.FromJson<JsonItems>(collectionJsonFile.text);
-            Collections.Add(subcollectionsInJson);
-        }
-
-        return Collections;
-    }
-
+   //Read Collections JSON
     public static JsonCollections GetCollections()
 	{
         TextAsset jsonFile = Resources.Load<TextAsset>("JSON/collections");
@@ -55,7 +37,8 @@ public static class JsonReader
     }
 
 
-    public static JsonItems GetItens(string id)
+    //Get Items based on ID
+    public static JsonItems GetItems(string id)
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("JSON/items-" + id);
 

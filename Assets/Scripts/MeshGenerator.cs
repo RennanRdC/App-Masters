@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(MeshRenderer))]
 public class MeshGenerator : MonoBehaviour
 {
+	//Generate a mesh based on width and depth
 	public void GenerateMesh(float width, float depth)
 	{
 		Vector3[] vertices = {
