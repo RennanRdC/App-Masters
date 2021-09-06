@@ -201,21 +201,22 @@ public class ProjectManager : MonoBehaviour
 
     public void GenerateMesh()
 	{
-        meshGenerator.GenerateMesh(float.Parse(widthInputField.text), float.Parse(depthInputField.text));
+        meshGenerator.GenerateMesh(float.Parse(widthInputField.text)/100, float.Parse(depthInputField.text)/100);
     }
 
 
     public void CalculateCamera()
 	{
-        float w = float.Parse(widthInputField.text);
-        float d = float.Parse(depthInputField.text);
+        float w = float.Parse(widthInputField.text)/100;
+        float d = float.Parse(depthInputField.text)/100;
 
         float bigger = w > d ? w : d;
 
+
         
 
-        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x - float.Parse(widthInputField.text) / 2, Camera.main.transform.position.y, Camera.main.transform.position.z);
-        Vector3 direction = Camera.main.transform.position - (meshGenerator.transform.position - new Vector3(float.Parse(widthInputField.text) / 2, 0, float.Parse(depthInputField.text) / 2));
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x - w/2, Camera.main.transform.position.y, Camera.main.transform.position.z);
+        Vector3 direction = Camera.main.transform.position - (meshGenerator.transform.position - new Vector3(w/2, 0, d/2));
         Camera.main.transform.position = Camera.main.transform.position + direction.normalized * bigger/2 + new Vector3(0,bigger,0);
 
     }
