@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class ProjectManager : MonoBehaviour
 {
+    [Header("Json Control")]
     public JsonCollections Collections;
     public JsonItems Items;
-    public List<GameObject> panels;
 
-    public int currentPanel = 0;
-    public int collectionSelected = -1;
-    public int itemSelected = -1;
+    [Header("Ui Elements")]
+    public Transform panelContainer;
+    public List<GameObject> panels;
 
     public Button backButton;
     public Button nextButton;
@@ -23,10 +23,16 @@ public class ProjectManager : MonoBehaviour
 
     public TextMeshProUGUI selectedCollectionText;
     public TextMeshProUGUI selectedItemText;
+    public TextMeshProUGUI finalSizeText;
 
-    public Transform panelContainer;
-    public GameObject panelPrefab;
     public GameObject buttonPrefab;
+
+
+    [Header("Mechanics")]
+
+    public int currentPanel = 0;
+    public int collectionSelected = -1;
+    public int itemSelected = -1;
 
     public MeshGenerator meshGenerator;
 
@@ -143,6 +149,7 @@ public class ProjectManager : MonoBehaviour
             
             CalculateCamera();
 
+            finalSizeText.text = widthInputField.text + "x" + depthInputField.text;
 
         }
     }
